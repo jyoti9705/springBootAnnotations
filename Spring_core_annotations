@@ -1,0 +1,41 @@
+Spring Core Annotations
+1.	Beans
+a.	In Spring previously, we used to create an object for a class using .xml file
+b.	.xml file is the configuration file 
+c.	Once the bean is created IOC Container registered that bean for class
+d.	Method 2
+i.	There is another way to create Bean for the class on the class level using annotation: @Component
+ii.	@Component creates an object for us and registers it inside the IOC Container for the class 
+iii.	@Component annotation is added at the top of the class
+iv.	We can specify the bean name in round brackets after @Component annotation
+v.	If we make use of @Component annotation, we also need to specify the spring that beans are no more present in the .xml file instead they are present somewhere else and provide the location of the bean
+vi.	Spring can go to the location provided in the .xml file and register your object in the IOC Container against that class
+vii.	If we do not want to have the .xml file for beans we can activate component scanning from JAVA by creating a class that will have all the configurations, A class can be used as a configuration class by adding @Configuration annotation on the top of the class.
+viii.	We can do component scanning from this class by also adding @ComponentScan annotation on the top of the class with @Configuration annotation, we need to also provide the base packages inside the round bracket for @ComponentScan
+ix.	We can then specify the configuration file in the context from where the application can take up all the beans required
+x.	Even if we do not provide the bean name by default bean name is the class name with the first letter in lowercase
+e.	Method 3
+i.	Another way to create beans instead of @Component, .xml file we can make use of @Bean annotation
+ii.	We can specify beans in the class annotated with @Configuration using @Bean annotation
+iii.	Using the @Bean method name becomes Id for the bean and we can return an object of the class inside the method
+iv.	We can override the bean name by providing the bean name you want inside the round bracket e.g. (name=” beanName”)
+v.	Multiple bean names can also be provided e.g. (name= {“bean1”,” bean2”})
+vi.	@ComponentScan is not required when we are creating beans using @Bean annotation
+vii.	If the class has a dependency on another class object for dependency class is also required
+viii.	Dependency can be generated using constructor, but we need to also specify the bean of the class for which we have a dependency in the configuration class and pass that bean name to the constructor of the class that is dependent while declaring bean for the dependent class
+ix.	Beans with dependency can also be done using setter 
+x.	If we have a dependency of the interface in a class, we can create a bean of interface class and return an implementation of interface class from the method
+xi.	We also need to set the value in the bean of the dependent class
+f.	Method 4
+i.	We can also inject dependencies with help of @Component and use @Autowired to inject component dependency
+ii.	No explicit bean creation is required using @Bean Annotation if we are making use of @Autowired
+iii.	If an interface has multiple implementations and we want one implementation to be always considered we will annotate that implementation class with @Primary annotation
+iv.	If we do not want to use the Primary implementation class and instead, we want to use any other implementation class then we can add @Qualifier and specify the bean name while autowiring interface with @Autowried annotation in the class
+2.	To fetch any value from properties we can make use of @Value annotation and specify the properties file located in the configuration file
+3.	Until now we have learned about
+a.	 @Component 
+b.	@ComponentScan
+c.	 @Bean @Autowired
+d.	 @Primary 
+e.	@Qualifier
+4.	
